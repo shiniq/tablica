@@ -1,0 +1,39 @@
+from prettytable import PrettyTable
+import colorama
+from colorama import Fore
+colorama.init()
+student_grades =[]
+def grades(elem):
+    student_grades.append([elem[0],elem[2]])
+    return elem
+def good_students(students):
+    best_students =[]
+    all_grades = [grade[1] for grade in students]
+    avg_grade = round(sum(all_grades)/len(all_grades))
+    for grade in students:
+        if grade[1] >= avg_grade:
+         best_students.append(grade[0])
+    print( Fore.BLUE +'\n Ученики: ',Fore.RED + ",".join(best_students), " с нормальными оценками", sep="")
+
+
+
+table = PrettyTable()
+
+table.field_names = [ "Имя студента", "Возраст", "Оценка за семестр", "Город проживания"]
+table.add_rows(
+[
+grades(["Пуппей",31,4,"Ногинск"]),
+grades(["Ниша",20,4,"Шанхй"]),
+grades(["Топиас",23,2,"Москва"]),
+grades(["Максут",17,4,"Электрогорск"]),
+grades(["Артёмка",17,5,"Электросталь"]),
+grades(["Данюшка",17,5,"Электросталь"]),
+grades(["Лёхыч",18,5,"Харьков"])
+]
+)
+print(table)
+good_students(student_grades)
+
+
+
+
